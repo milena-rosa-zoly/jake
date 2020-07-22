@@ -193,16 +193,22 @@ var script = {
     // --------------------------------
     // --- *** cookiePrivacyBar *** ---
     // --------------------------------
+
+    // Idealmente aqui deve ter um elemento mãe de tudo, com um z-index BEM alto. Algo como 10000. Garantir que toda a ferramenta de consent fica por cima de qualquer coisa. Sempre.
+
+
     var cookiesPrivacyDiv = document.createElement("div");
     document.body.appendChild(cookiesPrivacyDiv);
     cookiesPrivacyDiv.id = "cookies-privacy";
-
+    
+    // Eu sempre prefiro ser verbose e colocar right/bottom/left/top 0 do que 100%. Garante que não terá problemas com box-sizing diferente!
     style.sheet.insertRule(
-      `#cookies-privacy { align-items: center; background: #f2f2f2; bottom: 0; display: flex; font-family: Roboto, sans-serif; padding: 16px; position: fixed; width: 100%; z-index: 10; }`
-    );
-    style.sheet.insertRule(`#cookies-privacy h1 { margin-bottom: 8px; }`);
-    style.sheet.insertRule(`#cookies-privacy p { max-width: 1100px; }`);
-
+      `#cookies-privacy { align-items: center; background: #f2f2f2; display: flex; font-family: Roboto, sans-serif; padding: 16px; position: fixed; z-index: 10; right: 0; bottom: 0; left: 0; }`
+      );
+      style.sheet.insertRule(`#cookies-privacy h1 { margin-bottom: 8px; }`);
+      style.sheet.insertRule(`#cookies-privacy p { max-width: 1100px; }`);
+      
+      // Aqui seria bom deixar algo como 75% da tela para o container dos textos.
     var cookiesPrivacyContent = document.createElement("div");
     cookiesPrivacyDiv.appendChild(cookiesPrivacyContent);
 
@@ -216,6 +222,7 @@ var script = {
     cookiesPrivacyParagraph.style.maxWidth = "1100px";
     cookiesPrivacyParagraph.innerHTML = `Com o auxílio dos cookies podemos te conhecer melhor e, assim, recomendar produtos e serviços que sejam do seu interesse. Para saber mais sobre cookies e avaliar nossa Política de Privacidade, é só selecionar suas preferências em Configurar Privacidade.`;
 
+    // Aqui seria bom deixar algo como 25% da tela para o container dos botões.
     var cookiesPrivacyButtonsContainer = document.createElement("div");
     cookiesPrivacyDiv.appendChild(cookiesPrivacyButtonsContainer);
     cookiesPrivacyButtonsContainer.style.marginLeft = "48px";
@@ -258,8 +265,9 @@ var script = {
     var modalInner = document.createElement("div");
     modalInner.classList.add("modal-inner");
     modal.appendChild(modalInner);
+    // troquei para garantir conteúdo em janelas diferentes
     style.sheet.insertRule(
-      ".modal-inner { background: rgba(255, 255, 255, 0.8); border: 1px solid #888; border-radius: 4px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0), 0 7px 14px 0 rgba(50, 50, 93, 0.1); height: 580px; left: calc(50% - 480px); position: fixed; top: calc(50% - 290px); width: 960px; }"
+      ".modal-inner { background: rgba(255, 255, 255, 0.8); border: 1px solid #888; border-radius: 4px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0), 0 7px 14px 0 rgba(50, 50, 93, 0.1); position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 960px; max-width: 80%; height: 580px; max-height: 60%; }"
     );
 
     var modalTitle = document.createElement("h1");
@@ -272,8 +280,10 @@ var script = {
     var modalContent = document.createElement("div");
     modalContent.id = "modal-content";
     modalInner.appendChild(modalContent);
+    
+    // troquei para garantir conteúdo em janelas diferentes
     style.sheet.insertRule(
-      "#modal-content { display: flex; flex-direction: row; font-family: Roboto, sans-serif; height: 420px; }"
+      "#modal-content { display: flex; flex-direction: row; font-family: Roboto, sans-serif; height: calc(100% - 160px); overflow: auto; }"
     );
 
     var menu = document.createElement("nav");
@@ -437,6 +447,7 @@ var script = {
   init: function () {
     var style = document.createElement("style");
     style.innerHTML = `
+      /* Não dá para assumir essas informações em uma página qualquer... Se for para ter algo na página base pode colocar no index.html!
       * {
         margin: 0;
         padding: 0;
@@ -457,7 +468,7 @@ var script = {
 
       button {
         cursor: pointer;
-      }
+      } */
 
       input[type="checkbox"] {
         -webkit-appearance: none;
