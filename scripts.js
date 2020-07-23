@@ -121,6 +121,7 @@ var script = {
       headerContainer.appendChild(checkbox);
       checkbox.type = "checkbox";
       checkbox.checked = this.modalSections[sectionIndex].cookiePolicy;
+      checkbox.classList.add("custom-checkbox");
 
       checkbox.addEventListener("click", (event) => {
         this.modalSections[sectionIndex].cookiePolicy = event.target.checked;
@@ -194,23 +195,22 @@ var script = {
     // --- *** cookiePrivacyBar *** ---
     // --------------------------------
 
-    // Idealmente aqui deve ter um elemento mãe de tudo, com um z-index BEM alto. Algo como 10000. Garantir que toda a ferramenta de consent fica por cima de qualquer coisa. Sempre.
-
+    var generalContainer = document.createElement("div");
+    generalContainer.id = "general-container";
+    document.body.appendChild(generalContainer);
 
     var cookiesPrivacyDiv = document.createElement("div");
-    document.body.appendChild(cookiesPrivacyDiv);
+    generalContainer.appendChild(cookiesPrivacyDiv);
     cookiesPrivacyDiv.id = "cookies-privacy";
-    
-    // Eu sempre prefiro ser verbose e colocar right/bottom/left/top 0 do que 100%. Garante que não terá problemas com box-sizing diferente!
     style.sheet.insertRule(
-      `#cookies-privacy { align-items: center; background: #f2f2f2; display: flex; font-family: Roboto, sans-serif; padding: 16px; position: fixed; z-index: 10; right: 0; bottom: 0; left: 0; }`
-      );
-      style.sheet.insertRule(`#cookies-privacy h1 { margin-bottom: 8px; }`);
-      style.sheet.insertRule(`#cookies-privacy p { max-width: 1100px; }`);
-      
-      // Aqui seria bom deixar algo como 75% da tela para o container dos textos.
+      `#cookies-privacy { align-items: center; background: #f2f2f2; display: flex; font-family: Roboto, sans-serif; padding: 0 16px; position: fixed; z-index: 10000; right: 0; bottom: 0; left: 0; }`
+    );
+    style.sheet.insertRule(`#cookies-privacy h1 { margin-bottom: 8px; }`);
+    style.sheet.insertRule(`#cookies-privacy p { max-width: 1100px; }`);
+
     var cookiesPrivacyContent = document.createElement("div");
     cookiesPrivacyDiv.appendChild(cookiesPrivacyContent);
+    cookiesPrivacyContent.style.width = "75%";
 
     var cookiesPrivacyTitle = document.createElement("h1");
     cookiesPrivacyContent.appendChild(cookiesPrivacyTitle);
@@ -222,17 +222,24 @@ var script = {
     cookiesPrivacyParagraph.style.maxWidth = "1100px";
     cookiesPrivacyParagraph.innerHTML = `Com o auxílio dos cookies podemos te conhecer melhor e, assim, recomendar produtos e serviços que sejam do seu interesse. Para saber mais sobre cookies e avaliar nossa Política de Privacidade, é só selecionar suas preferências em Configurar Privacidade.`;
 
-    // Aqui seria bom deixar algo como 25% da tela para o container dos botões.
+    // !DONE Aqui seria bom deixar algo como 25% da tela para o container dos botões.
     var cookiesPrivacyButtonsContainer = document.createElement("div");
+    cookiesPrivacyButtonsContainer.id = "buttons-container";
     cookiesPrivacyDiv.appendChild(cookiesPrivacyButtonsContainer);
-    cookiesPrivacyButtonsContainer.style.marginLeft = "48px";
+    cookiesPrivacyButtonsContainer.style.width = "25%";
+    cookiesPrivacyButtonsContainer.style.display = "flex";
+    style.sheet.insertRule(
+      "@media screen and (max-width: 1200px) { #buttons-container { flex-direction: column; } }"
+    );
+
+    // cookiesPrivacyButtonsContainer.style.width = "600px";
 
     var cookiesPrivacyBtnConfig = document.createElement("button");
     cookiesPrivacyBtnConfig.classList.add("btn-light");
     cookiesPrivacyButtonsContainer.appendChild(cookiesPrivacyBtnConfig);
     cookiesPrivacyBtnConfig.innerText = "Configurar privacidade";
     style.sheet.insertRule(
-      ".btn-light { background: #fff; border: 1px solid #211451; border-radius: 4px; color: #211451; padding: 16px; transition: background 0.2s; width: 200px; }"
+      ".btn-light { align-items: center; background: #fff; border: 1px solid #211451; border-radius: 4px; color: #211451; cursor: pointer; display: flex; height: 40px; justify-content: center; margin: 10px; padding: 16px; transition: background 0.2s; width: 200px; }"
     );
     style.sheet.insertRule(
       ".btn-light:hover { background: rgba(33, 20, 81, 0.2); }"
@@ -242,10 +249,8 @@ var script = {
     cookiesPrivacyBtnAcceptAll.classList.add("btn-dark");
     cookiesPrivacyButtonsContainer.appendChild(cookiesPrivacyBtnAcceptAll);
     cookiesPrivacyBtnAcceptAll.innerText = "Aceitar todos os cookies";
-    cookiesPrivacyBtnAcceptAll.style.marginLeft = "16px";
-
     style.sheet.insertRule(
-      ".btn-dark { background: #211451; border: 1px solid #fff; border-radius: 4px; color: #fff; padding: 16px; transition: background 0.2s; width: 200px; }"
+      ".btn-dark { align-items: center; background: #211451; border: 1px solid #fff; border-radius: 4px; color: #fff; cursor: pointer; display: flex; height: 40px; justify-content: center; margin: 10px; padding: 16px; transition: background 0.2s; width: 200px; }"
     );
     style.sheet.insertRule(
       ".btn-dark:hover { background: rgba(33, 20, 81, 0.8); }"
@@ -254,36 +259,37 @@ var script = {
     // ---------------------
     // --- *** modal *** ---
     // ---------------------
+    style.sheet.insertRule(
+      "#config-privacy * { box-sizing: border-box; margin: 0; outline: 0; padding: 0;}"
+    );
     var modal = document.createElement("div");
     document.body.appendChild(modal);
     modal.id = "config-privacy";
     modal.classList.add("modal");
     style.sheet.insertRule(
-      ".modal { background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.4); display: none; height: 100%; left: 0; overflow: auto; position: fixed; top: 0; width: 100%; z-index: 1; }"
+      "#config-privacy .modal { background-color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0.4); display: none; height: 100%; left: 0; overflow: auto; position: fixed; top: 0; width: 100%; z-index: 1; }"
     );
 
     var modalInner = document.createElement("div");
     modalInner.classList.add("modal-inner");
     modal.appendChild(modalInner);
-    // troquei para garantir conteúdo em janelas diferentes
+
     style.sheet.insertRule(
-      ".modal-inner { background: rgba(255, 255, 255, 0.8); border: 1px solid #888; border-radius: 4px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0), 0 7px 14px 0 rgba(50, 50, 93, 0.1); position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 960px; max-width: 80%; height: 580px; max-height: 60%; }"
+      "#config-privacy .modal-inner { background: rgba(255, 255, 255, 0.8); border: 1px solid #888; border-radius: 4px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0), 0 7px 14px 0 rgba(50, 50, 93, 0.1); position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 960px; max-width: 80%; height: 580px; max-height: 60%; }"
     );
 
     var modalTitle = document.createElement("h1");
     modalInner.appendChild(modalTitle);
     modalTitle.innerHTML = "Sua Privacidade";
     style.sheet.insertRule(
-      ".modal-inner h1 { border-bottom: 1px solid #ccc; color: #333; font-family: Roboto, sans-serif; font-size: 32px; height: 80px; padding: 20px 0; text-align: center; width: 100%; }"
+      "#config-privacy .modal-inner h1 { align-items: center; border-bottom: 1px solid #ccc; color: #333; display: flex; font-family: Roboto, sans-serif; font-size: 32px; height: 80px; justify-content: center;padding: 20px 0; text-align: center; width: 100%; }"
     );
 
     var modalContent = document.createElement("div");
     modalContent.id = "modal-content";
     modalInner.appendChild(modalContent);
-    
-    // troquei para garantir conteúdo em janelas diferentes
     style.sheet.insertRule(
-      "#modal-content { display: flex; flex-direction: row; font-family: Roboto, sans-serif; height: calc(100% - 160px); overflow: auto; }"
+      "#config-privacy #modal-content { display: flex; flex-direction: row; font-family: Roboto, sans-serif; height: calc(100% - 160px); overflow: auto; }"
     );
 
     var menu = document.createElement("nav");
@@ -291,12 +297,14 @@ var script = {
     menu.style.display = "flex";
     menu.style.flexDirection = "column";
     menu.style.maxWidth = "240px";
-
     style.sheet.insertRule(
-      ".menu-item { background: transparent; border: 0; border-bottom: 1px solid #ccc; font-family: Roboto, sans-serif; font-size: 16px; height: 50px; font-weight: bold; padding: 10px 20px; text-align: left; transition: background 0.5s; width: 240px; }"
+      "#config-privacy .menu-item { background: transparent; border: 0; border-left: 5px solid transparent; border-bottom: 1px solid #ccc; cursor: pointer; font-family: Roboto, sans-serif; font-size: 16px; height: 50px; font-weight: bold; padding: 10px 20px; text-align: left; transition: background 0.5s; width: 100%; }"
     );
     style.sheet.insertRule(
-      ".menu-item:hover { background: rgba(33, 20, 81, 0.2); }"
+      "#config-privacy .menu-item:hover { background: rgba(33, 20, 81, 0.2); }"
+    );
+    style.sheet.insertRule(
+      "#config-privacy .menu-item.menu-item-active { border-left: 5px solid #211451; }"
     );
 
     var btnSuaPrivacidade = document.createElement("button");
@@ -379,7 +387,7 @@ var script = {
     modalContent.appendChild(mainContent);
     mainContent.id = "main-content";
     style.sheet.insertRule(
-      "#modal-content main { border-left: 1px solid #ccc; flex: 1; padding: 24px; }"
+      "#config-privacy #modal-content main { border-left: 1px solid #ccc; flex: 1; padding: 24px; }"
     );
 
     var initialSectionContent = this.modalSections[0];
@@ -397,7 +405,7 @@ var script = {
     var footer = document.createElement("footer");
     modalInner.appendChild(footer);
     style.sheet.insertRule(
-      ".modal-inner footer { align-items: center; border-top: 1px solid #ccc; display: flex; height: 80px; justify-content: center; }"
+      "#config-privacy .modal-inner footer { align-items: center; border-top: 1px solid #ccc; display: flex; height: 80px; justify-content: center; }"
     );
 
     var btnSaveConfig = document.createElement("button");
@@ -447,30 +455,14 @@ var script = {
   init: function () {
     var style = document.createElement("style");
     style.innerHTML = `
-      /* Não dá para assumir essas informações em uma página qualquer... Se for para ter algo na página base pode colocar no index.html!
-      * {
+      #general-container {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
         outline: none;
       }
 
-      html,
-      body {
-        box-sizing: border-box;
-        height: 100%; /* pass down for min-height*/
-      }
-
-      *,
-      *:before,
-      *:after {
-        box-sizing: inherit;
-      }
-
-      button {
-        cursor: pointer;
-      } */
-
-      input[type="checkbox"] {
+      .custom-checkbox {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -486,11 +478,11 @@ var script = {
         width: 3.5em;
       }
       
-      input[type="checkbox"]:checked {
+      .custom-checkbox:checked {
         background: #211451;
       }
       
-      input[type="checkbox"]:after {
+      .custom-checkbox:after {
         background: #fff;
         border-radius: 50%;
         -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
@@ -506,13 +498,8 @@ var script = {
         width: 1.5em;
       }
       
-      input[type="checkbox"]:checked:after {
+      .custom-checkbox:checked:after {
         left: calc(100% - 1.5em);
-      }
-
-      .menu-item-active { 
-        border-left: 5px solid #211451;
-        
       }
     `;
     document.head.appendChild(style);
