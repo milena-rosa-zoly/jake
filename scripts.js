@@ -484,7 +484,7 @@ var script = {
         padding: 0;
       }
       
-      #config-privacy-modal .modal {
+      #config-privacy-modal.modal {
         background-color: rgb(0, 0, 0);
         background-color: rgba(0, 0, 0, 0.4);
         bottom: 0;
