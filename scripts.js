@@ -227,7 +227,7 @@ var script = {
     // --- *** modal *** ---
     // ---------------------
     var modal = document.createElement("div");
-    document.body.appendChild(modal);
+    generalContainer.appendChild(modal);
     modal.id = "config-privacy-modal";
     modal.classList.add("modal");
 
