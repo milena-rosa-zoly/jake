@@ -148,7 +148,6 @@ var script = {
     this.modalSections.forEach((section) => {
       if (section.hasCookiePolicy || section.cookiePolicyAlways) {
         cookiesPolicies.push(`${section.id}:${section.cookiePolicy}`);
-        console.log(cookiesPolicies);
       }
     });
     this.createCookie("zoly_consent", JSON.stringify(cookiesPolicies), 30);
