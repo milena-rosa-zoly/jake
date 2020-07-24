@@ -397,6 +397,7 @@ var script = {
         margin: 0;
         padding: 0;
         outline: none;
+        z-index: 10000;
       }
 
       #general-container {
@@ -410,7 +411,7 @@ var script = {
         display: flex;
         font-family: Roboto, sans-serif;
         left: 0;
-        padding: 0 16px;
+        padding: 16px;
         position: fixed;
         right: 0;
         z-index: 10000;
@@ -444,7 +445,7 @@ var script = {
         cursor: pointer;
         display: flex;
         font-size: 14px;
-        height: 40px;
+        min-height: 40px;
         justify-content: center;
         margin: 10px;
         padding: 16px;
@@ -465,7 +466,7 @@ var script = {
         cursor: pointer;
         display: flex;
         font-size: 14px;
-        height: 40px;
+        min-height: 40px;
         justify-content: center;
         margin: 10px;
         padding: 16px;
