@@ -144,10 +144,10 @@ var script = {
 
   updateCookiesPolicies: function () {
     this.removeCookie("zoly_consent");
-    var cookiesPolicies = [];
+    var cookiesPolicies = {};
     this.modalSections.forEach((section) => {
       if (section.hasCookiePolicy || section.cookiePolicyAlways) {
-        cookiesPolicies.push(`${section.id}:${section.cookiePolicy}`);
+        cookiesPolicies[section.id] = section.cookiePolicy;
       }
     });
     this.createCookie("zoly_consent", JSON.stringify(cookiesPolicies), 30);
