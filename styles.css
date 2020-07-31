@@ -263,3 +263,112 @@
     flex-direction: column;
   }
 }
+
+@media screen and (max-width: 864px) {
+  #cookies-privacy {
+    flex-direction: column;
+  }
+  #cookies-privacy #buttons-container {
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #cookies-privacy {
+    flex-direction: column;
+  }
+  #cookies-privacy #buttons-container {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  #main-section {
+    flex-direction: column;
+  }
+  #main-section nav {
+    max-width: 100%;
+  }
+
+  #main-section nav .content--visible {
+    display: block;
+  }
+  #main-section nav .content--hidden {
+    display: none;
+  }
+
+  #main-content {
+    display: none;
+  }
+
+  #main-section nav main {
+    border-left: 1px solid #ccc;
+    flex: 1;
+    padding: 24px;
+  }
+
+  #main-section nav .content--visible main h3 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  #main-section nav .content--visible .main-content-header-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  
+  #main-section nav .content--visible .main-content-header-container span {
+    color: #211451;
+    font-size: 20px;
+  }
+  
+  #main-section nav .content--visible .main-content-header-container .custom-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #ddd;
+    border-radius: 3em;
+    cursor: pointer;
+    font-size: 16px;
+    height: 1.5em;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 3.5em;
+  }
+  
+  #main-section nav .content--visible .main-content-header-container .custom-checkbox:checked {
+    background: #211451;
+  }
+  
+  #main-section nav .content--visible .main-content-header-container .custom-checkbox:after {
+    background: #fff;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+    content: "";
+    height: 1.5em;
+    left: 0;
+    position: absolute;
+    -webkit-transform: scale(0.7);
+    transform: scale(0.7);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 1.5em;
+  }
+  
+  #main-section nav .content--visible .main-content-header-container .custom-checkbox:checked:after {
+    left: calc(100% - 1.5em);
+  }
+
+  /* #main-section div button {
+    order: 0;
+  } */
+}
