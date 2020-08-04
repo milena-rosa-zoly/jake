@@ -382,7 +382,7 @@ var script = {
     var wrapper = document.createElement('div');
 
     style.href =
-      'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css';
+      'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css?dev=2';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 
