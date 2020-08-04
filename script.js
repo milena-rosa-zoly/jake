@@ -369,7 +369,7 @@ var script = {
     zolyCookiePrivacyBtn.id = 'btn-cookie-privacy';
     zolyCookiePrivacyBtn.type = 'button';
     zolyCookiePrivacyBtn.innerHTML =
-      "<img src='https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/assets/keyhole-privacy.png' alt='Alterar opções de cookies e privacidade' />";
+      "<img src='https://cdn.statically.io/gh/milena-rosa-zoly/jake/5d9950cf/assets/keyhole-privacy.png' alt='Alterar opções de cookies e privacidade' />";
 
     zolyCookiePrivacyBtn.onclick = () => {
       this.createZolyCookiePrivacyModal();
