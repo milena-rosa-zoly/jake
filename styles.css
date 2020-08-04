@@ -1,18 +1,18 @@
-#general-container {
+#wrapper {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   outline: none;
-  z-index: 10000;
+  /* z-index: 100000; */
 }
 
-#cookies-privacy {
+#cookies-privacy-bottom-bar {
   align-items: center;
   background: #f2f2f2;
   bottom: 0;
   display: flex;
-  font-family: Roboto, sans-serif;
+  font-family: Arial, sans-serif;
   left: 0;
   padding: 16px;
   position: fixed;
@@ -20,26 +20,26 @@
   z-index: 10000;
 }
 
-#cookies-privacy #texts-container {
+#cookies-privacy-bottom-bar #bottom-bar-texts-container {
   width: 75%;
 }
 
-#cookies-privacy #texts-container h1 {
+#cookies-privacy-bottom-bar #bottom-bar-texts-container h1 {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
-#cookies-privacy #texts-container p {
+#cookies-privacy-bottom-bar #bottom-bar-texts-container p {
   max-width: 1100px;
 }
 
-#cookies-privacy #buttons-container {
+#cookies-privacy-bottom-bar #bottom-bar-buttons-container {
   display: flex;
   width: 25%;
 }
 
-#cookies-privacy .btn-light {
+#cookies-privacy-bottom-bar .btn-light {
   align-items: center;
   background: #fff;
   border: 1px solid #211451;
@@ -47,7 +47,7 @@
   color: #211451;
   cursor: pointer;
   display: flex;
-  font-size: 14px;
+  font-size: 10px;
   min-height: 40px;
   justify-content: center;
   margin: 10px;
@@ -55,11 +55,11 @@
   transition: background 0.2s;
   width: 200px;
 }
-#cookies-privacy .btn-light:hover {
+#cookies-privacy-bottom-bar .btn-light:hover {
   background: rgba(33, 20, 81, 0.2);
 }
 
-#cookies-privacy .btn-dark,
+#cookies-privacy-bottom-bar .btn-dark,
 #config-privacy-modal .modal-inner footer .btn-dark {
   align-items: center;
   background: #211451;
@@ -69,17 +69,19 @@
   cursor: pointer;
   display: flex;
   font-size: 14px;
-  min-height: 40px;
+  min-height: 48px;
   justify-content: center;
   margin: 10px;
-  padding: 16px;
+  padding: 8px;
   transition: background 0.2s;
   width: 200px;
 }
-#cookies-privacy .btn-dark:hover,
+#cookies-privacy-bottom-bar .btn-dark:hover,
 #config-privacy-modal .modal-inner footer .btn-dark:hover {
   background: rgba(33, 20, 81, 0.8);
 }
+
+/* MODAL */
 
 #config-privacy-modal * {
   box-sizing: border-box;
@@ -99,7 +101,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 1;
+  z-index: 100000;
 }
 
 #config-privacy-modal .modal-inner {
@@ -107,6 +109,7 @@
   border: 1px solid #888;
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0), 0 7px 14px 0 rgba(50, 50, 93, 0.1);
+  color: rgba(48, 69, 92, 1);
   position: fixed;
   left: 50%;
   top: 50%;
@@ -133,65 +136,116 @@
 }
 
 #main-section {
-  display: flex;
-  flex-direction: row;
-  font-family: Roboto, sans-serif;
-  height: calc(100% - 160px);
-  overflow: auto;
-}
-
-#main-section nav {
-  display: flex;
-  flex-direction: column;
-  max-width: 260px;
-}
-
-#main-section nav .menu-item {
-  background: transparent;
-  border: 0;
-  border-left: 5px solid transparent;
+  align-self: center;
   border-bottom: 1px solid #ccc;
+  color: rgba(48, 69, 92, 1);
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: Arial, sans-serif;
+  justify-content: flex-start;
+  height: calc(100% - 160px);
+  margin: 0;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}
+
+#main-section section {
+  display: block;
+  left: 0;
+  width: 100%;
+}
+
+#main-section section input[name='sections'] {
+  left: -9999px;
+  position: absolute;
+  top: -9999px;
+}
+
+#main-section section input[name='sections']:checked + label {
+  background: rgba(220, 231, 235, 0.5);
+  border-left: 5px solid #211451;
+  color: rgba(48, 69, 92, 1);
+}
+#main-section section input[name='sections']:checked ~ article {
+  display: block;
+}
+#main-section section label {
+  align-items: center;
+  background: rgba(220, 231, 235, 0.5);
+  border: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
+  border-left: 5px solid transparent;
+  color: rgba(48, 69, 92, 1);
   cursor: pointer;
-  font-family: Roboto, sans-serif;
+  display: flex;
+  font-family: Arial, sans-serif;
   font-size: 16px;
   font-weight: bold;
   height: 50px;
   padding: 10px 20px;
+  position: relative;
   text-align: left;
   transition: background 0.3s;
   width: 100%;
+  z-index: 100;
 }
-#main-section nav .menu-item:hover {
+#main-section section label:hover {
   background: rgba(33, 20, 81, 0.2);
 }
-#main-section nav .menu-item.menu-item-active {
-  border-left: 5px solid #211451;
-}
 
-#main-section main {
+#main-section section article {
   border-left: 1px solid #ccc;
-  flex: 1;
+  display: none;
+  /* flex: 1; */
+  font-family: Arial, sans-serif;
+  font-weight: 300;
+  height: 100%;
+  left: 0;
+  line-height: 1.7;
   padding: 24px;
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+#main-section section article p {
+  margin-bottom: 1em;
+}
+#main-section section article:after {
+  background-color: transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  left: -259px;
+  position: absolute;
+  top: 0;
+  width: 260px;
+  z-index: 1;
 }
 
-#main-content main h3 {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-#main-content .main-content-header-container {
+#main-section section article .content-header {
   align-items: center;
+  border-bottom: 1px solid rgba(220, 231, 235, 0.5);
   display: flex;
   justify-content: space-between;
   margin-bottom: 36px;
+  padding-bottom: 16px;
 }
 
-#main-content .main-content-header-container span {
+#main-section section article .content-header h3 {
+  color: rgba(48, 69, 92, 1);
+  font-weight: 700;
+  font-size: 20px;
+  position: relative;
+}
+
+#main-section section article .content-header span {
   color: #211451;
+  font-family: Arial, sans-serif;
   font-size: 20px;
 }
 
-#main-content .main-content-header-container .custom-checkbox {
+#main-section section article .content-header .custom-checkbox {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -206,17 +260,15 @@
   transition: all 0.2s ease-in-out;
   width: 3.5em;
 }
-
-#main-content .main-content-header-container .custom-checkbox:checked {
+#main-section section article .content-header .custom-checkbox:checked {
   background: #211451;
 }
-
-#main-content .main-content-header-container .custom-checkbox:after {
+#main-section section article .content-header .custom-checkbox:after {
   background: #fff;
   border-radius: 50%;
   -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-  content: "";
+  content: '';
   height: 1.5em;
   left: 0;
   position: absolute;
@@ -226,8 +278,7 @@
   transition: all 0.2s ease-in-out;
   width: 1.5em;
 }
-
-#main-content .main-content-header-container .custom-checkbox:checked:after {
+#main-section section article .content-header .custom-checkbox:checked:after {
   left: calc(100% - 1.5em);
 }
 
@@ -244,8 +295,10 @@
   border: 0;
   border-radius: 50%;
   bottom: 24px;
-  color: #f2f2f2;
+  box-shadow: 4px 4px 16px rgb(41, 41, 41);
+  color: white;
   cursor: pointer;
+  fill: red;
   height: 60px;
   left: 24px;
   outline: 0;
@@ -255,120 +308,49 @@
   z-index: 20000;
 }
 #btn-cookie-privacy:hover {
-  background: rgba(33, 20, 81, 0.2);
+  background: #493d74;
+}
+
+@media all and (min-width: 520px) {
+  #config-privacy-modal .modal-inner footer .btn-dark {
+    font-size: 14px;
+    padding: 16px;
+  }
+}
+
+@media all and (min-width: 768px) {
+  #main-section {
+    color: rgba(48, 69, 92, 1);
+    width: 100%;
+  }
+  #main-section section label {
+    background: transparent;
+    border-bottom: 1px solid #ccc;
+    left: 0px;
+    width: 27%;
+  }
+
+  #main-section section article {
+    left: 27%;
+    position: absolute;
+    width: 73%;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-  #buttons-container {
+  #bottom-bar-buttons-container {
     flex-direction: column;
   }
 }
 
 @media screen and (max-width: 864px) {
-  #cookies-privacy {
+  #cookies-privacy-bottom-bar {
     flex-direction: column;
   }
-  #cookies-privacy #buttons-container {
+  #cookies-privacy-bottom-bar #bottom-bar-buttons-container {
     align-items: center;
     flex-direction: row;
     justify-content: center;
     width: 100%;
   }
-}
-
-@media screen and (max-width: 650px) {
-  #cookies-privacy {
-    flex-direction: column;
-  }
-  #cookies-privacy #buttons-container {
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-  }
-
-  #main-section {
-    flex-direction: column;
-  }
-  #main-section nav {
-    max-width: 100%;
-  }
-
-  #main-section nav .content--visible {
-    display: block;
-  }
-  #main-section nav .content--hidden {
-    display: none;
-  }
-
-  #main-content {
-    display: none;
-  }
-
-  #main-section nav main {
-    border-left: 1px solid #ccc;
-    flex: 1;
-    padding: 24px;
-  }
-
-  #main-section nav .content--visible main h3 {
-    font-size: 20px;
-    font-weight: 700;
-  }
-  
-  #main-section nav .content--visible .main-content-header-container {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 36px;
-  }
-  
-  #main-section nav .content--visible .main-content-header-container span {
-    color: #211451;
-    font-size: 20px;
-  }
-  
-  #main-section nav .content--visible .main-content-header-container .custom-checkbox {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: #ddd;
-    border-radius: 3em;
-    cursor: pointer;
-    font-size: 16px;
-    height: 1.5em;
-    outline: none;
-    position: relative;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    width: 3.5em;
-  }
-  
-  #main-section nav .content--visible .main-content-header-container .custom-checkbox:checked {
-    background: #211451;
-  }
-  
-  #main-section nav .content--visible .main-content-header-container .custom-checkbox:after {
-    background: #fff;
-    border-radius: 50%;
-    -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
-    content: "";
-    height: 1.5em;
-    left: 0;
-    position: absolute;
-    -webkit-transform: scale(0.7);
-    transform: scale(0.7);
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    width: 1.5em;
-  }
-  
-  #main-section nav .content--visible .main-content-header-container .custom-checkbox:checked:after {
-    left: calc(100% - 1.5em);
-  }
-
-  /* #main-section div button {
-    order: 0;
-  } */
 }
