@@ -3,13 +3,13 @@ var script = {
     privacy: {
       title: 'Sua Privacidade',
       content:
-        'Ao visitar um site, com a ajuda dos cookies, arquivos de internet que armazenam temporariamente seus acessos, armazenamos seu comportamento dentro daquele ambiente. A ideia é que essas informações sejam utilizadas a seu favor, principalmente, para oferecer uma experiência mais personalizada, com produtos e serviços que façam a diferença para você. No entanto, em respeito ao seu direito de privacidade, é possível permitir ou não certos tipos de cookies, que estão disponíveis para você alterar em nossas configurações, a qualquer momento.',
+        'Ao visitar um site, são os cookies os responsáveis pelo armazenamento temporário do seu comportamento dentro do nosso ambiente. Essas informações serão utilizadas a seu favor, com o intuito de oferecer uma experiência com produtos e serviços de forma personalizada. No entanto, respeitamos e impulsionamos seu direito de privacidade, sendo possível permitir ou não certos tipos de cookies. Aqui você gerencia esses cookies, a qualquer momento.',
       menuActive: true,
     },
     essentials: {
       title: 'Cookies Essenciais',
       content:
-        'Como o título já diz, esses cookies são necessários para o funcionamento do site e não podem ser desativados. Geralmente, são definidos apenas em resposta a suas ações. Por exemplo: solicitação de serviços; definição de preferências de privacidade; acesso ao login e preenchimento de formulários. É possível configurar seu navegador para bloquear ou para alertá-lo sobre esses cookies, mas, ainda assim, em algumas partes do site isso não funcionará. Esses cookies não armazenam informações identificáveis.',
+        'Necessários para que nosso ambiente funcione e não podemos desligá-los. Eles só são configurados em resposta a ações levadas a cabo por si e que correspondem a uma solicitação de serviços, tais como definir as suas preferências de privacidade, iniciar sessão ou preencher formulários. Você pode configurar o seu navegador para bloquear ou alertá-lo(a) sobre esses cookies, mas algumas partes do website não funcionarão. Estes cookies não armazenam qualquer informação pessoal que permita identificá-lo(a).',
       menuActive: false,
       hasCookiePolicy: true,
       cookiePolicy: true,
@@ -18,7 +18,7 @@ var script = {
     performance: {
       title: 'Cookies de Desempenho',
       content:
-        'Com eles, há como contar suas visitas e as fontes de tráfego para mensuração e possíveis ajustes no desempenho do site. Dessa forma, podemos saber quais páginas são mais ou menos relevantes. As informações coletadas por esses cookies são anônimas. Sem habilitar esta opção, não conseguimos saber quando você visitou nosso site e, portanto, não conseguimos monitorar o desempenho.',
+        'Utilizados para contar visitas e fontes de tráfego, assim é possível medir e melhorar o desempenho do nosso ambiente. Eles ajudam a saber quais são as páginas mais e menos populares e a ver como os visitantes se movimentam entre nossos ambientes. Todas as informações recolhidas por estes cookies são agregadas e, por conseguinte, anônimas.',
       menuActive: false,
       cookiePolicy: false,
       hasCookiePolicy: true,
@@ -26,7 +26,7 @@ var script = {
     functionality: {
       title: 'Cookies de Funcionalidade',
       content:
-        'Ao permitir esses cookies, você consegue armazenar suas preferências. Assim, você não precisa inserir seus dados mais de uma vez em um formulário, por exemplo.',
+        'Permitem que o ambiente forneça funcionalidades e personalização melhoradas. Podem ser estabelecidos por nós ou por fornecedores externos cujos serviços foram adicionados às nossas páginas. Se não permitir estes cookies, algumas destas funcionalidades, ou mesmo todas, podem não atuar corretamente.',
       menuActive: false,
       cookiePolicy: false,
       hasCookiePolicy: true,
@@ -34,7 +34,7 @@ var script = {
     publicity: {
       title: 'Cookies de Publicidade',
       content:
-        'Os cookies de publicidade ou segmentação podem ser definidos pelos nossos parceiros publicitários, por meio do nosso site. A partir disso, criam um perfil de seu interesse, mostrando anúncios relevantes em outros sites. Nesse caso, não armazenam informações pessoais diretamente, mas são baseados na identificação exclusiva de seu navegador e dispositivo da internet. Se você não permitir esses cookies, deixará de contar com uma publicidade mais assertiva.',
+        'São estabelecidos através do nosso ambiente, pelos nossos parceiros de publicidade. Podem ser usados por essas empresas para construir um perfil sobre os seus interesses e mostrar-lhe anúncios relevantes. Eles não armazenam diretamente informações pessoais, mas são baseados na identificação exclusiva do seu navegador e dispositivo de internet. Se não permitir estes cookies, sua publicidade não será direcionada, nem baseada em produtos que podem te interessar.',
       menuActive: false,
       cookiePolicy: false,
       hasCookiePolicy: true,
@@ -44,8 +44,8 @@ var script = {
   bottomBarTexts: {
     cookiesPrivacyTitle: 'Cookies e Privacidade',
     cookiesPrivacyParagraph:
-      'Com o auxílio dos cookies podemos te conhecer melhor e, assim, recomendar produtos e serviços que sejam do seu interesse. Para saber mais sobre cookies e avaliar nossa Política de Privacidade, é só selecionar suas preferências em Configurar Privacidade.',
-    cookiesPrivacyBtnConfig: 'Configurar privacidade',
+      'Este site armazena cookies para intensificar sua experiência, melhorando a navegação e personificação dos nossos anúncios. Para saber mais e gerenciar nossos cookies clique em "Gerenciar cookies".',
+    cookiesPrivacyBtnConfig: 'Gerenciar cookies',
     cookiesPrivacyBtnAcceptAll: 'Aceitar todos os cookies',
   },
 
@@ -382,7 +382,7 @@ var script = {
     var wrapper = document.createElement('div');
 
     style.href =
-      'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css?dev=3';
+      'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css?dev=4';
     style.rel = 'stylesheet';
     document.head.appendChild(style);
 

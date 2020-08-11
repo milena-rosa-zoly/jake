@@ -291,19 +291,23 @@
 }
 
 #btn-cookie-privacy {
+  align-items: center;
   background: #211451;
   border: 0;
   border-radius: 50%;
   bottom: 24px;
-  box-shadow: 4px 4px 16px rgb(41, 41, 41);
-  color: white;
+  box-shadow: 2px 3px 8px rgb(41, 41, 41);
+  color: #fff;
   cursor: pointer;
-  height: 60px;
-  left: 24px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  left: 16px;
+  opacity: 0.8;
   outline: 0;
   position: fixed;
   transition: opacity 0.2s;
-  width: 60px;
+  width: 40px;
   z-index: 20000;
 }
 #btn-cookie-privacy:hover {
