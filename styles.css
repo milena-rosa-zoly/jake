@@ -1,6 +1,5 @@
 #wrapper {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   outline: none;
@@ -9,10 +8,10 @@
 
 #cookies-privacy-bottom-bar {
   align-items: center;
-  background: #f2f2f2;
+  background: var(--bottom-bar-background);
   bottom: 0;
   display: flex;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family);
   left: 0;
   padding: 16px;
   position: fixed;
@@ -41,10 +40,10 @@
 
 #cookies-privacy-bottom-bar .btn-light {
   align-items: center;
-  background: #fff;
-  border: 1px solid #211451;
+  background: var(--light-button-background);
+  border: 1px solid var(--light-button-foreground);
   border-radius: 4px;
-  color: #211451;
+  color: var(--light-button-foreground);
   cursor: pointer;
   display: flex;
   font-size: 14px;
@@ -56,16 +55,16 @@
   width: 200px;
 }
 #cookies-privacy-bottom-bar .btn-light:hover {
-  background: rgba(33, 20, 81, 0.2);
+  background: var(--light-button-hover-background);
 }
 
 #cookies-privacy-bottom-bar .btn-dark,
 #config-privacy-modal .modal-inner footer .btn-dark {
   align-items: center;
-  background: #211451;
-  border: 1px solid #fff;
+  background: var(--dark-button-background);
+  border: 1px solid var(--dark-button-foreground);
   border-radius: 4px;
-  color: #fff;
+  color: var(--dark-button-foreground);
   cursor: pointer;
   display: flex;
   font-size: 14px;
@@ -78,7 +77,7 @@
 }
 #cookies-privacy-bottom-bar .btn-dark:hover,
 #config-privacy-modal .modal-inner footer .btn-dark:hover {
-  background: rgba(33, 20, 81, 0.8);
+  background: var(--dark-button-hover-background);
 }
 
 /* MODAL */
@@ -105,11 +104,11 @@
 }
 
 #config-privacy-modal .modal-inner {
-  background: rgba(255, 255, 255);
-  border: 1px solid #888;
+  background: var(--modal-background);
+  border: 1px solid var(--modal-border);
   border-radius: 4px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0), 0 7px 14px 0 rgba(50, 50, 93, 0.1);
-  color: rgba(48, 69, 92, 1);
+  color: var(--modal-foreground);
   height: 580px;
   left: 50%;
   max-height: 80%;
@@ -123,9 +122,9 @@
 #config-privacy-modal .modal-inner h1 {
   align-items: center;
   border-bottom: 1px solid #ccc;
-  color: #333;
+  color: var(--modal-foreground);
   display: flex;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family);
   font-size: 32px;
   font-weight: 700;
   height: 80px;
@@ -138,10 +137,9 @@
 #main-section {
   align-self: center;
   border-bottom: 1px solid #ccc;
-  color: rgba(48, 69, 92, 1);
   display: flex;
   flex-flow: column nowrap;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family);
   justify-content: flex-start;
   height: calc(100% - 160px);
   margin: 0;
@@ -163,23 +161,21 @@
 }
 
 #main-section section input[name='sections']:checked + label {
-  background: rgba(220, 231, 235, 0.5);
-  border-left: 5px solid #211451;
-  color: rgba(48, 69, 92, 1);
+  background: var(--menu-checked-item-background);
+  border-left: 5px solid var(--menu-checked-item-foreground);
+  color: var(--menu-checked-item-foreground);
 }
 #main-section section input[name='sections']:checked ~ article {
   display: block;
 }
 #main-section section label {
   align-items: center;
-  background: rgba(220, 231, 235, 0.5);
-  border: 1px solid #ccc;
-  /* border-bottom: 1px solid #ccc; */
+  border-bottom: 1px solid #ccc;
   border-left: 5px solid transparent;
-  color: rgba(48, 69, 92, 1);
+  color: var(--menu-item-foreground);
   cursor: pointer;
   display: flex;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family);
   font-size: 16px;
   font-weight: bold;
   height: 50px;
@@ -191,14 +187,13 @@
   z-index: 100;
 }
 #main-section section label:hover {
-  background: rgba(33, 20, 81, 0.2);
+  background: var(--menu-item-hover-background);
 }
 
 #main-section section article {
   border-left: 1px solid #ccc;
   display: none;
-  /* flex: 1; */
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family);
   font-weight: 300;
   height: 100%;
   left: 0;
@@ -233,15 +228,15 @@
 }
 
 #main-section section article .content-header h3 {
-  color: rgba(48, 69, 92, 1);
+  color: var(--content-title);
   font-weight: 700;
   font-size: 20px;
   position: relative;
 }
 
 #main-section section article .content-header span {
-  color: #211451;
-  font-family: Arial, sans-serif;
+  color: var(--content-flag-sempre-ativos);
+  font-family: var(--font-family);
   font-size: 20px;
 }
 
@@ -261,7 +256,7 @@
   width: 3.5em;
 }
 #main-section section article .content-header .custom-checkbox:checked {
-  background: #211451;
+  background: var(--content-checkbox-checked);
 }
 #main-section section article .content-header .custom-checkbox:after {
   background: #fff;
@@ -284,7 +279,6 @@
 
 #config-privacy-modal .modal-inner footer {
   align-items: center;
-  border-top: 1px solid #ccc;
   display: flex;
   height: 80px;
   justify-content: center;
@@ -292,12 +286,12 @@
 
 #btn-cookie-privacy {
   align-items: center;
-  background: #211451;
+  background: var(--button-cookie-privacy-background);
   border: 0;
   border-radius: 50%;
   bottom: 24px;
   box-shadow: 2px 3px 8px rgb(41, 41, 41);
-  color: #fff;
+  color: var(--button-cookie-privacy-foreground);
   cursor: pointer;
   display: flex;
   height: 40px;
@@ -311,7 +305,7 @@
   z-index: 20000;
 }
 #btn-cookie-privacy:hover {
-  background: #493d74;
+  background: var(--button-cookie-privacy-hover-background);
 }
 #btn-cookie-privacy img {
   width: 100%;
@@ -326,7 +320,6 @@
 
 @media all and (min-width: 768px) {
   #main-section {
-    color: rgba(48, 69, 92, 1);
     width: 100%;
   }
   #main-section section label {

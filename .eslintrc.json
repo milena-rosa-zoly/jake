@@ -9,9 +9,12 @@
     "ecmaVersion": 11
   },
   "rules": {
+    "camelcase": "off",
+    "indent": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
     "no-var": "off",
+    "no-unused-vars": "off",
     "operator-linebreak": "off"
   }
 }

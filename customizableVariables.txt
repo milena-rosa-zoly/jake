@@ -1,0 +1,55 @@
+args: {
+  texts: {
+    cookiesCategories: {
+      privacy: { title, content }
+      essentials: { title, content }
+      performance: { title, content }
+      functionality: { title, content }
+      publicity: { title, content }
+    }
+
+    bottomBarTexts: {
+      cookiesPrivacyTitle
+      cookiesPrivacyParagraph
+      cookiesPrivacyParagraph
+      cookiesPrivacyBtnConfig
+      cookiesPrivacyBtnAcceptAll
+      cookiesPolicyLink
+      cookiesPolicyLinkText
+    }
+
+    modalTexts: {
+      modalTitle
+      alwaysActiveCookies
+    }
+  },
+
+  fontFamily,
+
+  colors: {
+    bottomBarBackground
+    bottomBarBackground
+    lightButtonBackground
+    lightButtonForeground
+    lightButtonHoverBackground
+    darkButtonBackground
+    darkButtonHoverBackground
+    darkButtonForeground
+    modalBackground
+    modalForeground
+    modalBorder
+    menuItemHoverBackground
+    menuItemForeground
+    menuCheckedItemBackground
+    menuCheckedItemForeground
+    contentTitle
+    contentFlagSempreAtivos
+    contentCheckboxChecked
+    buttonCookiePrivacyBackground
+    buttonCookiePrivacyBackground
+    buttonCookiePrivacyForeground
+  }
+
+  buttonImage
+};
+}

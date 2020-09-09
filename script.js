@@ -1,57 +1,41 @@
-var script = {
-  cookiesCategories: {
-    privacy: {
-      title: 'Sua Privacidade',
-      content:
-        'Ao visitar um site, são os cookies os responsáveis pelo armazenamento temporário do seu comportamento dentro do nosso ambiente. Essas informações serão utilizadas a seu favor, com o intuito de oferecer uma experiência com produtos e serviços de forma personalizada. No entanto, respeitamos e impulsionamos seu direito de privacidade, sendo possível permitir ou não certos tipos de cookies. Aqui você gerencia esses cookies, a qualquer momento.',
-      menuActive: true,
-    },
-    essentials: {
-      title: 'Cookies Essenciais',
-      content:
-        'Necessários para que nosso ambiente funcione e não podemos desligá-los. Eles só são configurados em resposta a ações levadas a cabo por si e que correspondem a uma solicitação de serviços, tais como definir as suas preferências de privacidade, iniciar sessão ou preencher formulários. Você pode configurar o seu navegador para bloquear ou alertá-lo(a) sobre esses cookies, mas algumas partes do website não funcionarão. Estes cookies não armazenam qualquer informação pessoal que permita identificá-lo(a).',
-      menuActive: false,
-      hasCookiePolicy: true,
-      cookiePolicy: true,
-      cookiePolicyAlways: true,
-    },
-    performance: {
-      title: 'Cookies de Desempenho',
-      content:
-        'Utilizados para contar visitas e fontes de tráfego, assim é possível medir e melhorar o desempenho do nosso ambiente. Eles ajudam a saber quais são as páginas mais e menos populares e a ver como os visitantes se movimentam entre nossos ambientes. Todas as informações recolhidas por estes cookies são agregadas e, por conseguinte, anônimas.',
-      menuActive: false,
-      cookiePolicy: false,
-      hasCookiePolicy: true,
-    },
-    functionality: {
-      title: 'Cookies de Funcionalidade',
-      content:
-        'Permitem que o ambiente forneça funcionalidades e personalização melhoradas. Podem ser estabelecidos por nós ou por fornecedores externos cujos serviços foram adicionados às nossas páginas. Se não permitir estes cookies, algumas destas funcionalidades, ou mesmo todas, podem não atuar corretamente.',
-      menuActive: false,
-      cookiePolicy: false,
-      hasCookiePolicy: true,
-    },
-    publicity: {
-      title: 'Cookies de Publicidade',
-      content:
-        'São estabelecidos através do nosso ambiente, pelos nossos parceiros de publicidade. Podem ser usados por essas empresas para construir um perfil sobre os seus interesses e mostrar-lhe anúncios relevantes. Eles não armazenam diretamente informações pessoais, mas são baseados na identificação exclusiva do seu navegador e dispositivo de internet. Se não permitir estes cookies, sua publicidade não será direcionada, nem baseada em produtos que podem te interessar.',
-      menuActive: false,
-      cookiePolicy: false,
-      hasCookiePolicy: true,
-    },
-  },
+var zoly_consent = {
+  args: {},
 
-  bottomBarTexts: {
-    cookiesPrivacyTitle: 'Cookies e Privacidade',
-    cookiesPrivacyParagraph:
-      'Este site armazena cookies para intensificar sua experiência, melhorando a navegação e personificação dos nossos anúncios. Para saber mais e gerenciar nossos cookies clique em "Gerenciar cookies".',
-    cookiesPrivacyBtnConfig: 'Gerenciar cookies',
-    cookiesPrivacyBtnAcceptAll: 'Aceitar todos os cookies',
-  },
+  cookiesCategories: {},
 
-  modalTexts: {
-    modalTitle: 'Sua Privacidade',
-    alwaysActiveCookies: 'Sempre ativos',
+  bottomBarTexts: {},
+
+  modalTexts: {},
+
+  init(args) {
+    var cssLink = document.createElement('link');
+    var style = document.createElement('style');
+    var wrapper = document.createElement('div');
+
+    this.args = args;
+    this.cookiesCategories = this.getCustomCookieCategoriesInfos(args.texts);
+    this.bottomBarTexts = this.getCustomBottomBarTexts(args.texts);
+    this.modalTexts = this.getCustomModalTexts(args.texts);
+
+    const { colors, fontFamily } = this.args;
+    style.innerHTML = this.setCustomProperties({ colors, fontFamily });
+    document.head.appendChild(style);
+
+    cssLink.href = './styles.css';
+    // 'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css?dev=4';
+    cssLink.rel = 'stylesheet';
+    document.head.appendChild(cssLink);
+
+    wrapper.id = 'wrapper';
+    document.body.appendChild(wrapper);
+
+    // user's not filled the cookies policies. the bar is showed.
+    if (!this.cookiesPolicyAlreadyFilled()) {
+      this.createZolyCookiePrivacyBottomBar();
+    } else {
+      // user has already filled the cookies policies at least once.
+      this.createZolyCookiePrivacyButton();
+    }
   },
 
   // *** utils ***
@@ -316,6 +300,7 @@ var script = {
     var cookiesPrivacyTextsContainer = document.createElement('div');
     var cookiesPrivacyTitle = document.createElement('h1');
     var cookiesPrivacyParagraph = document.createElement('p');
+    var cookiesPolicyLink = document.createElement('a');
 
     var cookiesPrivacyButtonsContainer = document.createElement('div');
     var cookiesPrivacyBtnConfig = document.createElement('button');
@@ -325,6 +310,7 @@ var script = {
     cookiesPrivacyBottomBar.appendChild(cookiesPrivacyTextsContainer);
     cookiesPrivacyTextsContainer.appendChild(cookiesPrivacyTitle);
     cookiesPrivacyTextsContainer.appendChild(cookiesPrivacyParagraph);
+    cookiesPrivacyTextsContainer.appendChild(cookiesPolicyLink);
     cookiesPrivacyBottomBar.appendChild(cookiesPrivacyButtonsContainer);
     cookiesPrivacyButtonsContainer.appendChild(cookiesPrivacyBtnConfig);
     cookiesPrivacyButtonsContainer.appendChild(cookiesPrivacyBtnAcceptAll);
@@ -336,6 +322,8 @@ var script = {
 
     cookiesPrivacyTitle.innerHTML = this.bottomBarTexts.cookiesPrivacyTitle;
     cookiesPrivacyParagraph.innerHTML = this.bottomBarTexts.cookiesPrivacyParagraph;
+    cookiesPolicyLink.href = this.bottomBarTexts.cookiesPolicyLink;
+    cookiesPolicyLink.innerHTML = this.bottomBarTexts.cookiesPolicyLinkText;
 
     // buttons container
     cookiesPrivacyButtonsContainer.id = 'bottom-bar-buttons-container';
@@ -368,8 +356,10 @@ var script = {
     wrapper.appendChild(zolyCookiePrivacyBtn);
     zolyCookiePrivacyBtn.id = 'btn-cookie-privacy';
     zolyCookiePrivacyBtn.type = 'button';
-    zolyCookiePrivacyBtn.innerHTML =
-      "<img src='https://cdn.statically.io/gh/milena-rosa-zoly/jake/459e3d8a/assets/keyhole-privacy.png' alt='Alterar opções de cookies e privacidade' />";
+    zolyCookiePrivacyBtn.innerHTML = `<img src='${
+      this.args.buttonImage ||
+      'https://cdn.statically.io/gh/milena-rosa-zoly/jake/459e3d8a/assets/keyhole-privacy.png'
+    }' alt='Alterar opções de cookies e privacidade />`;
 
     zolyCookiePrivacyBtn.onclick = () => {
       this.createZolyCookiePrivacyModal();
@@ -377,32 +367,126 @@ var script = {
     };
   },
 
-  init() {
-    var style = document.createElement('link');
-    var wrapper = document.createElement('div');
+  setCustomProperties({ colors, fontFamily }) {
+    return `
+      :root {
+        --font-family: ${fontFamily || "'Arial', 'sans-serif'"};
 
-    style.href =
-      'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css?dev=4';
-    style.rel = 'stylesheet';
-    document.head.appendChild(style);
+        --bottom-bar-background: ${colors.bottomBarBackground || '#f2f2f2'};
 
-    wrapper.id = 'wrapper';
-    document.body.appendChild(wrapper);
+        --light-button-background: ${colors.lightButtonBackground || '#fff'};
+        --light-button-foreground: ${colors.lightButtonForeground || '#000'};
+        --light-button-hover-background: ${
+          colors.lightButtonHoverBackground || 'rgba(0, 0, 0, 0.2)'
+        };
+        --dark-button-background: ${colors.darkButtonBackground || '#000'};
+        --dark-button-hover-background: ${
+          colors.darkButtonHoverBackground || 'rgba(0, 0, 0, 0.75)'
+        };
+        --dark-button-foreground: ${colors.darkButtonForeground || '#fff'};
 
-    // user's not filled the cookies policies. the bar is showed.
-    if (!this.cookiesPolicyAlreadyFilled()) {
-      this.createZolyCookiePrivacyBottomBar();
-    } else {
-      // user has already filled the cookies policies at least once.
-      this.createZolyCookiePrivacyButton();
-    }
+        --modal-background: ${colors.modalBackground || '#fff'};
+        --modal-foreground: ${colors.modalForeground || '#333'};
+        --modal-border: ${colors.modalBorder || '#888'};
+        --menu-item-hover-background: ${
+          colors.menuItemHoverBackground || 'rgba(0, 0, 0, 0.2)'
+        };
+        --menu-item-foreground: ${colors.menuItemForeground || '#333'};
+        --menu-checked-item-background: ${
+          colors.menuCheckedItemBackground || '#ddd'
+        };
+        --menu-checked-item-foreground: ${
+          colors.menuCheckedItemForeground || '#333'
+        };
+
+        --content-title: ${colors.contentTitle || '#ff0064'};
+        --content-flag-sempre-ativos: ${
+          colors.contentFlagSempreAtivos || '#666'
+        };
+        --content-checkbox-checked: ${
+          colors.contentCheckboxChecked || '#ff0064'
+        };
+
+        --button-cookie-privacy-background: ${
+          colors.buttonCookiePrivacyBackground || '#ff0064'
+        };
+        --button-cookie-privacy-hover-background: ${
+          colors.buttonCookiePrivacyBackground || '#a32c43'
+        };
+        --button-cookie-privacy-foreground: ${
+          colors.buttonCookiePrivacyForeground || '#fff'
+        };
+      }`;
+  },
+
+  getCustomCookieCategoriesInfos(texts) {
+    return {
+      privacy: {
+        title: texts.privacy?.title || 'Sua Privacidade',
+        content:
+          texts.privacy?.content ||
+          'Ao visitar um site, são os cookies os responsáveis pelo armazenamento temporário do seu comportamento dentro do nosso ambiente. Essas informações serão utilizadas a seu favor, com o intuito de oferecer uma experiência com produtos e serviços de forma personalizada. No entanto, respeitamos e impulsionamos seu direito de privacidade, sendo possível permitir ou não certos tipos de cookies. Aqui você gerencia esses cookies, a qualquer momento.',
+        menuActive: true,
+      },
+      essentials: {
+        title: texts.essentials?.title || 'Cookies Essenciais',
+        content:
+          texts.essentials?.content ||
+          'Necessários para que nosso ambiente funcione e não podemos desligá-los. Eles só são configurados em resposta a ações levadas a cabo por si e que correspondem a uma solicitação de serviços, tais como definir as suas preferências de privacidade, iniciar sessão ou preencher formulários. Você pode configurar o seu navegador para bloquear ou alertá-lo(a) sobre esses cookies, mas algumas partes do website não funcionarão. Estes cookies não armazenam qualquer informação pessoal que permita identificá-lo(a).',
+        menuActive: false,
+        hasCookiePolicy: true,
+        cookiePolicy: true,
+        cookiePolicyAlways: true,
+      },
+      performance: {
+        title: texts.performance?.title || 'Cookies de Desempenho',
+        content:
+          texts.performance?.content ||
+          'Utilizados para contar visitas e fontes de tráfego, assim é possível medir e melhorar o desempenho do nosso ambiente. Eles ajudam a saber quais são as páginas mais e menos populares e a ver como os visitantes se movimentam entre nossos ambientes. Todas as informações recolhidas por estes cookies são agregadas e, por conseguinte, anônimas.',
+        menuActive: false,
+        cookiePolicy: false,
+        hasCookiePolicy: true,
+      },
+      functionality: {
+        title: texts.functionality?.title || 'Cookies de Funcionalidade',
+        content:
+          texts.functionality?.content ||
+          'Permitem que o ambiente forneça funcionalidades e personalização melhoradas. Podem ser estabelecidos por nós ou por fornecedores externos cujos serviços foram adicionados às nossas páginas. Se não permitir estes cookies, algumas destas funcionalidades, ou mesmo todas, podem não atuar corretamente.',
+        menuActive: false,
+        cookiePolicy: false,
+        hasCookiePolicy: true,
+      },
+      publicity: {
+        title: texts.publicity?.title || 'Cookies de Publicidade',
+        content:
+          texts.publicity?.content ||
+          'São estabelecidos através do nosso ambiente, pelos nossos parceiros de publicidade. Podem ser usados por essas empresas para construir um perfil sobre os seus interesses e mostrar-lhe anúncios relevantes. Eles não armazenam diretamente informações pessoais, mas são baseados na identificação exclusiva do seu navegador e dispositivo de internet. Se não permitir estes cookies, sua publicidade não será direcionada, nem baseada em produtos que podem te interessar.',
+        menuActive: false,
+        cookiePolicy: false,
+        hasCookiePolicy: true,
+      },
+    };
+  },
+
+  getCustomBottomBarTexts(texts) {
+    return {
+      cookiesPrivacyTitle: texts.cookiesPrivacyTitle || 'Cookies e Privacidade',
+      cookiesPrivacyParagraph:
+        texts.cookiesPrivacyParagraph ||
+        'Este site armazena cookies para intensificar sua experiência, melhorando a navegação e personificação dos nossos anúncios. Para saber mais e gerenciar nossos cookies clique em "Gerenciar cookies".',
+      cookiesPrivacyBtnConfig:
+        texts.cookiesPrivacyBtnConfig || 'Gerenciar cookies',
+      cookiesPrivacyBtnAcceptAll:
+        texts.cookiesPrivacyBtnAcceptAll || 'Aceitar todos os cookies',
+      cookiesPolicyLink: texts.cookiesPolicyLink || '',
+      cookiesPolicyLinkText: texts.cookiesPolicyLinkText || '',
+    };
+  },
+
+  getCustomModalTexts(texts) {
+    return {
+      modalTitle: texts.modalTitle || 'Sua Privacidade',
+      alwaysActiveCookies: texts.alwaysActiveCookies || 'Sempre ativos',
+    };
   },
 };
-
-// ((window, document) => {
-//   script.init();
-// })(window, document);
-
-(() => {
-  script.init();
-})(window, document);
