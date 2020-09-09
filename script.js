@@ -356,10 +356,8 @@ var zoly_consent = {
     wrapper.appendChild(zolyCookiePrivacyBtn);
     zolyCookiePrivacyBtn.id = 'btn-cookie-privacy';
     zolyCookiePrivacyBtn.type = 'button';
-    zolyCookiePrivacyBtn.innerHTML = `<img src='${
-      this.args.buttonImage ||
-      'https://cdn.statically.io/gh/milena-rosa-zoly/jake/459e3d8a/assets/keyhole-privacy.png'
-    }' alt='Alterar opções de cookies e privacidade />`;
+    zolyCookiePrivacyBtn.innerHTML =
+      `<img src="${this.args.buttonImage || 'https://cdn.statically.io/gh/milena-rosa-zoly/jake/459e3d8a/assets/keyhole-privacy.png'}" alt='Alterar opções de cookies e privacidade' />`;
 
     zolyCookiePrivacyBtn.onclick = () => {
       this.createZolyCookiePrivacyModal();
