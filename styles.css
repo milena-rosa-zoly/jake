@@ -206,6 +206,12 @@
 #main-section section article p {
   margin-bottom: 1em;
 }
+#main-section a {
+  text-decoration: none;
+}
+#main-section a:hover {
+  text-decoration: underline;
+}
 #main-section section article:after {
   background-color: transparent;
   bottom: 0;

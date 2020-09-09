@@ -13,7 +13,6 @@ var zoly_consent = {
     var wrapper = document.createElement('div');
 
     this.args = args;
-    console.log(args);
     this.cookiesCategories = this.getCustomCookieCategoriesInfos(args.texts.cookiesCategories);
     this.bottomBarTexts = this.getCustomBottomBarTexts(args.texts.bottomBarTexts);
     this.modalTexts = this.getCustomModalTexts(args.texts.modalTexts);
@@ -417,7 +416,38 @@ var zoly_consent = {
       }`;
   },
 
+  getCookiePolicyLink() {
+    const { userAgent } = navigator;
+    const browsers = {
+      Opera: 'https://www.opera.com/pt-br/privacy/cookies',
+      Chrome: 'https://support.google.com/chrome/answer/95647?hl=pt-BR',
+      Safari: 'https://www.apple.com/legal/privacy/pt/cookies/',
+      Firefox: 'https://support.mozilla.org/pt-BR/kb/desative-cookies-terceiros-impedir-rastreamento',
+      Edge: 'https://support.microsoft.com/pt-br/help/17442/windows-internet-explorer-delete-manage-cookies',
+    };
+
+    if ((userAgent.includes('Opera/') || userAgent.includes('OPR/'))) {
+      return browsers.Opera;
+    }
+    if (userAgent.includes('Chrome/')) {
+      return browsers.Chrome;
+    }
+    if (userAgent.includes('Safari/')) {
+      return browsers.Safari;
+    }
+    if (userAgent.includes('Firefox/')) {
+      return browsers.Firefox;
+    }
+    if (userAgent.includes('Edg/')) {
+      return browsers.Edge;
+    }
+
+    return 'https://www.google.com';
+},
   getCustomCookieCategoriesInfos(texts) {
+    window.onload = () => {
+
+    };
     return {
       privacy: {
         title: texts.privacy?.title || 'Sua Privacidade',
@@ -459,6 +489,15 @@ var zoly_consent = {
         content:
           texts.publicity?.content ||
           'São estabelecidos através do nosso ambiente, pelos nossos parceiros de publicidade. Podem ser usados por essas empresas para construir um perfil sobre os seus interesses e mostrar-lhe anúncios relevantes. Eles não armazenam diretamente informações pessoais, mas são baseados na identificação exclusiva do seu navegador e dispositivo de internet. Se não permitir estes cookies, sua publicidade não será direcionada, nem baseada em produtos que podem te interessar.',
+        menuActive: false,
+        cookiePolicy: false,
+        hasCookiePolicy: true,
+      },
+      browser: {
+        title: texts.browser?.title || 'Cookies do Navegador',
+        content:
+          texts.browser?.content ||
+          `Cookies: o site poderá fazer o uso de cookies essenciais e coletas totalmente anonimizadas, cabendo ao Usuário configurar o seu navegador de Internet, caso deseje bloqueá-los. Nesta hipótese, algumas funcionalidades do site poderão ser limitadas. <a href='${this.getCookiePolicyLink()}' target='blank'>Clique aqui</a> para mais informações.`,
         menuActive: false,
         cookiePolicy: false,
         hasCookiePolicy: true,
