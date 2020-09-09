@@ -13,9 +13,10 @@ var zoly_consent = {
     var wrapper = document.createElement('div');
 
     this.args = args;
-    this.cookiesCategories = this.getCustomCookieCategoriesInfos(args.texts);
-    this.bottomBarTexts = this.getCustomBottomBarTexts(args.texts);
-    this.modalTexts = this.getCustomModalTexts(args.texts);
+    console.log(args);
+    this.cookiesCategories = this.getCustomCookieCategoriesInfos(args.texts.cookiesCategories);
+    this.bottomBarTexts = this.getCustomBottomBarTexts(args.texts.bottomBarTexts);
+    this.modalTexts = this.getCustomModalTexts(args.texts.modalTexts);
 
     const { colors, fontFamily } = this.args;
     style.innerHTML = this.setCustomProperties({ colors, fontFamily });
