@@ -47,7 +47,7 @@ var zoly_consent = {
       expires = `; expires=${date.toGMTString()}`;
     }
 
-    document.cookie = `${name}=${value}${expires}; path=/; sameSite=strict`;
+    document.cookie = `${name}=${value}${expires}; path=/; sameSite=strict;secure`;
   },
 
   removeCookie(name) {
