@@ -21,8 +21,7 @@ var zoly_consent = {
     style.innerHTML = this.setCustomProperties({ colors, fontFamily });
     document.head.appendChild(style);
 
-    cssLink.href = './styles.css';
-    // 'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css?dev=4';
+    cssLink.href = 'https://cdn.statically.io/gh/milena-rosa-zoly/jake/master/styles.css?dev=5';
     cssLink.rel = 'stylesheet';
     document.head.appendChild(cssLink);
 
