@@ -13,9 +13,9 @@ var zoly_consent = {
     var wrapper = document.createElement('div');
 
     this.args = args;
-    this.cookiesCategories = this.getCustomCookieCategoriesInfos(args.texts.cookiesCategories);
-    this.bottomBarTexts = this.getCustomBottomBarTexts(args.texts.bottomBarTexts);
-    this.modalTexts = this.getCustomModalTexts(args.texts.modalTexts);
+    this.cookiesCategories = this.getCustomCookieCategoriesInfos(args?.texts?.cookiesCategories);
+    this.bottomBarTexts = this.getCustomBottomBarTexts(args?.texts?.bottomBarTexts);
+    this.modalTexts = this.getCustomModalTexts(args?.texts?.modalTexts);
 
     const { colors, fontFamily } = this.args;
     style.innerHTML = this.setCustomProperties({ colors, fontFamily });
@@ -369,49 +369,49 @@ var zoly_consent = {
       :root {
         --font-family: ${fontFamily || "'Arial', 'sans-serif'"};
 
-        --bottom-bar-background: ${colors.bottomBarBackground || '#f2f2f2'};
+        --bottom-bar-background: ${colors?.bottomBarBackground || '#f2f2f2'};
 
-        --light-button-background: ${colors.lightButtonBackground || '#fff'};
-        --light-button-foreground: ${colors.lightButtonForeground || '#000'};
+        --light-button-background: ${colors?.lightButtonBackground || '#fff'};
+        --light-button-foreground: ${colors?.lightButtonForeground || '#000'};
         --light-button-hover-background: ${
-          colors.lightButtonHoverBackground || 'rgba(0, 0, 0, 0.2)'
+          colors?.lightButtonHoverBackground || 'rgba(0, 0, 0, 0.2)'
         };
-        --dark-button-background: ${colors.darkButtonBackground || '#000'};
+        --dark-button-background: ${colors?.darkButtonBackground || '#000'};
         --dark-button-hover-background: ${
-          colors.darkButtonHoverBackground || 'rgba(0, 0, 0, 0.75)'
+          colors?.darkButtonHoverBackground || 'rgba(0, 0, 0, 0.75)'
         };
-        --dark-button-foreground: ${colors.darkButtonForeground || '#fff'};
+        --dark-button-foreground: ${colors?.darkButtonForeground || '#fff'};
 
-        --modal-background: ${colors.modalBackground || '#fff'};
-        --modal-foreground: ${colors.modalForeground || '#333'};
-        --modal-border: ${colors.modalBorder || '#888'};
+        --modal-background: ${colors?.modalBackground || '#fff'};
+        --modal-foreground: ${colors?.modalForeground || '#333'};
+        --modal-border: ${colors?.modalBorder || '#888'};
         --menu-item-hover-background: ${
-          colors.menuItemHoverBackground || 'rgba(0, 0, 0, 0.2)'
+          colors?.menuItemHoverBackground || 'rgba(0, 0, 0, 0.2)'
         };
-        --menu-item-foreground: ${colors.menuItemForeground || '#333'};
+        --menu-item-foreground: ${colors?.menuItemForeground || '#333'};
         --menu-checked-item-background: ${
-          colors.menuCheckedItemBackground || '#ddd'
+          colors?.menuCheckedItemBackground || '#ddd'
         };
         --menu-checked-item-foreground: ${
-          colors.menuCheckedItemForeground || '#333'
+          colors?.menuCheckedItemForeground || '#333'
         };
 
-        --content-title: ${colors.contentTitle || '#ff0064'};
+        --content-title: ${colors?.contentTitle || '#ff0064'};
         --content-flag-sempre-ativos: ${
-          colors.contentFlagSempreAtivos || '#666'
+          colors?.contentFlagSempreAtivos || '#666'
         };
         --content-checkbox-checked: ${
-          colors.contentCheckboxChecked || '#ff0064'
+          colors?.contentCheckboxChecked || '#ff0064'
         };
 
         --button-cookie-privacy-background: ${
-          colors.buttonCookiePrivacyBackground || '#ff0064'
+          colors?.buttonCookiePrivacyBackground || '#ff0064'
         };
         --button-cookie-privacy-hover-background: ${
-          colors.buttonCookiePrivacyBackground || '#a32c43'
+          colors?.buttonCookiePrivacyBackground || '#a32c43'
         };
         --button-cookie-privacy-foreground: ${
-          colors.buttonCookiePrivacyForeground || '#fff'
+          colors?.buttonCookiePrivacyForeground || '#fff'
         };
       }`;
   },
