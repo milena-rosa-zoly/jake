@@ -508,8 +508,9 @@ var zoly_consent = {
           texts?.browser?.content ||
           `Cookies: o site poderá fazer o uso de cookies essenciais e coletas totalmente anonimizadas, cabendo ao Usuário configurar o seu navegador de Internet, caso deseje bloqueá-los. Nesta hipótese, algumas funcionalidades do site poderão ser limitadas. <a href='${this.getCookiePolicyLink()}' target='blank'>Clique aqui</a> para mais informações.`,
         menuActive: false,
-        cookiePolicy: false,
         hasCookiePolicy: true,
+        cookiePolicy: true,
+        cookiePolicyAlways: true,
       },
     };
   },
